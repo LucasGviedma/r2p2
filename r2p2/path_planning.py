@@ -107,6 +107,7 @@ def generate_grid(npdata, divider):
                     npdata[x, y] = row[j]
         grid.append(row)
     #u.npdata = npdata
+    print(grid)
     return grid, chunk_width, chunk_height
 
 def generate_grid_no_divider(npdata):
@@ -323,3 +324,5 @@ def run_path_planning_mesh(mesh_points, algo='A* mesh', start=(1, 1), finish=(2,
 import heuristics
 import aStar
 import dijkstra
+
+

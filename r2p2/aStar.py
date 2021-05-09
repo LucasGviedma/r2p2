@@ -20,12 +20,11 @@ __copyright__ = "Copyright 2019, UAH"
 __credits__ = ["Mario Cobos Maestre"]
 __date__ = "2019/03/29"
 __deprecated__ = False
-__email__ =  "mario.cobos@edu.uah.es"
+__email__ = "mario.cobos@edu.uah.es"
 __license__ = "GPLv3"
 __maintainer__ = "Mario Cobos Maestre"
 __status__ = "Development"
 __version__ = "0.0.1"
-
 
 """
     Code modified from https://gist.github.com/jamiees2/5531924
@@ -33,7 +32,8 @@ __version__ = "0.0.1"
 
 import path_planning as pp
 
-def children(point,grid):
+
+def children(point, grid):
     """
         Calculates the children of a given node over a grid.
         Inputs:
@@ -42,44 +42,45 @@ def children(point,grid):
         Outputs:
             - list of children for the given node.
     """
-    x,y = point.grid_point
-    if x > 0 and x < len(grid) - 1:
-        if y > 0 and y < len(grid[0]) - 1:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x-1, y),(x,y - 1),(x,y + 1),(x+1,y),\
-                      (x-1, y-1), (x-1, y+1), (x+1, y-1),\
-                      (x+1, y+1)]]
+    x, y = point.grid_point
+    if 0 < x < len(grid) - 1:
+        if 0 < y < len(grid[0]) - 1:
+            links = [grid[d[0]][d[1]] for d in
+                     [(x - 1, y), (x, y - 1), (x, y + 1), (x + 1, y),
+                      (x - 1, y - 1), (x - 1, y + 1), (x + 1, y - 1),
+                      (x + 1, y + 1)]]
         elif y > 0:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x-1, y),(x,y - 1),(x+1,y),\
-                      (x-1, y-1), (x+1, y-1)]]
+            links = [grid[d[0]][d[1]] for d in
+                     [(x - 1, y), (x, y - 1), (x + 1, y),
+                      (x - 1, y - 1), (x + 1, y - 1)]]
         else:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x-1, y),(x,y + 1),(x+1,y),\
-                      (x-1, y+1), (x+1, y+1)]]
+            links = [grid[d[0]][d[1]] for d in
+                     [(x - 1, y), (x, y + 1), (x + 1, y),
+                      (x - 1, y + 1), (x + 1, y + 1)]]
     elif x > 0:
-        if y > 0 and y < len(grid[0]) - 1:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x-1, y),(x,y - 1),(x,y + 1),\
-                      (x-1, y-1), (x-1, y+1)]]
+        if 0 < y < len(grid[0]) - 1:
+            links = [grid[d[0]][d[1]] for d in
+                     [(x - 1, y), (x, y - 1), (x, y + 1),
+                      (x - 1, y - 1), (x - 1, y + 1)]]
         elif y > 0:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x-1, y),(x,y - 1),(x-1, y-1)]]
+            links = [grid[d[0]][d[1]] for d in
+                     [(x - 1, y), (x, y - 1), (x - 1, y - 1)]]
         else:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x-1, y), (x,y + 1), (x-1, y+1)]]
+            links = [grid[d[0]][d[1]] for d in
+                     [(x - 1, y), (x, y + 1), (x - 1, y + 1)]]
     else:
-        if y > 0 and y < len(grid[0]) - 1:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x+1, y),(x,y - 1),(x,y + 1),\
-                      (x+1, y-1), (x+1, y+1)]]
+        if 0 < y < len(grid[0]) - 1:
+            links = [grid[d[0]][d[1]] for d in
+                     [(x + 1, y), (x, y - 1), (x, y + 1),
+                      (x + 1, y - 1), (x + 1, y + 1)]]
         elif y > 0:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x+1, y),(x,y - 1),(x+1, y-1)]]
+            links = [grid[d[0]][d[1]] for d in
+                     [(x + 1, y), (x, y - 1), (x + 1, y - 1)]]
         else:
-            links = [grid[d[0]][d[1]] for d in\
-                     [(x+1, y), (x,y + 1), (x+1, y+1)]]
+            links = [grid[d[0]][d[1]] for d in
+                     [(x + 1, y), (x, y + 1), (x + 1, y + 1)]]
     return [link for link in links if link.value != 9]
+
 
 def aStar(start, goal, grid, heur='naive'):
     """
@@ -95,19 +96,19 @@ def aStar(start, goal, grid, heur='naive'):
             - ordered list of nodes representing the shortest path found
             from start to goal.
     """
-    #The open and closed sets
+    # The open and closed sets
     openset = set()
     closedset = set()
-    #Current point is the starting point
+    # Current point is the starting point
     current = start
-    #Add the starting point to the open set
+    # Add the starting point to the open set
     openset.add(current)
-    #While the open set is not empty
+    # While the open set is not empty
     while openset:
-        #Find the item in the open set with the lowest G + H score
-        current = min(openset, key=lambda o:o.G + o.H)
+        # Find the item in the open set with the lowest G + H score
+        current = min(openset, key=lambda o: o.G + o.H)
         pp.expanded_nodes += 1
-        #If it is the item we want, retrace the path and return it
+        # If it is the item we want, retrace the path and return it
         if current == goal:
             path = []
             while current.parent:
@@ -115,35 +116,37 @@ def aStar(start, goal, grid, heur='naive'):
                 current = current.parent
             path.append(current)
             return path[::-1]
-        #Remove the item from the open set
+        # Remove the item from the open set
         openset.remove(current)
-        #Add it to the closed set
+        # Add it to the closed set
         closedset.add(current)
-        #Loop through the node's children/siblings
-        for node in children(current,grid):
-            #If it is already in the closed set, skip it
+        # Loop through the node's children/siblings
+        for node in children(current, grid):
+            # If it is already in the closed set, skip it
             if node in closedset:
                 continue
-            #Otherwise if it is already in the open set
+            # Otherwise if it is already in the open set
             if node in openset:
-                #Check if we beat the G score 
+                # Check if we beat the G score
                 new_g = current.G + current.move_cost(node)
                 if node.G > new_g:
-                    #If so, update the node to have a new parent
+                    # If so, update the node to have a new parent
                     node.G = new_g
                     node.parent = current
             else:
-                #If it isn't in the open set, calculate the G and H score for the node
+                # If it isn't in the open set, calculate the G and H score for the node
                 node.G = current.G + current.move_cost(node)
                 node.H = pp.heuristic[heur](node, goal)
-                #Set the parent to our current item
+                # Set the parent to our current item
                 node.parent = current
-                #Add it to the set
+                # Add it to the set
                 openset.add(node)
-    #Throw an exception if there is no path
+    # Throw an exception if there is no path
     raise ValueError('No Path Found')
 
+
 pp.register_search_method('A*', aStar)
+
 
 def aStar_mesh(start, goal, grid, heur='naive'):
     """
@@ -159,19 +162,19 @@ def aStar_mesh(start, goal, grid, heur='naive'):
             - ordered list of nodes representing the shortest path found
             from start to goal.
     """
-    #The open and closed sets
+    # The open and closed sets
     openset = set()
     closedset = set()
-    #Current point is the starting point
+    # Current point is the starting point
     current = start
-    #Add the starting point to the open set
+    # Add the starting point to the open set
     openset.add(current)
-    #While the open set is not empty
+    # While the open set is not empty
     while openset:
-        #Find the item in the open set with the lowest G + H score
-        current = min(openset, key=lambda o:o.G + o.H)
+        # Find the item in the open set with the lowest G + H score
+        current = min(openset, key=lambda o: o.G + o.H)
         pp.expanded_nodes += 1
-        #If it is the item we want, retrace the path and return it
+        # If it is the item we want, retrace the path and return it
         if current == goal:
             path = []
             while current.parent:
@@ -179,32 +182,33 @@ def aStar_mesh(start, goal, grid, heur='naive'):
                 current = current.parent
             path.append(current)
             return path[::-1]
-        #Remove the item from the open set
+        # Remove the item from the open set
         openset.remove(current)
-        #Add it to the closed set
+        # Add it to the closed set
         closedset.add(current)
-        #Loop through the node's children/siblings
+        # Loop through the node's children/siblings
         for node in current.neighbors.values():
-            #If it is already in the closed set, skip it
+            # If it is already in the closed set, skip it
             if node in closedset:
                 continue
-            #Otherwise if it is already in the open set
+            # Otherwise if it is already in the open set
             if node in openset:
-                #Check if we beat the G score 
+                # Check if we beat the G score
                 new_g = current.G + current.move_cost(node)
                 if node.G > new_g:
-                    #If so, update the node to have a new parent
+                    # If so, update the node to have a new parent
                     node.G = new_g
                     node.parent = current
             else:
-                #If it isn't in the open set, calculate the G and H score for the node
+                # If it isn't in the open set, calculate the G and H score for the node
                 node.G = current.G + current.move_cost(node)
                 node.H = pp.heuristic[heur](node, goal)
-                #Set the parent to our current item
+                # Set the parent to our current item
                 node.parent = current
-                #Add it to the set
+                # Add it to the set
                 openset.add(node)
-    #Throw an exception if there is no path
+    # Throw an exception if there is no path
     raise ValueError('No Path Found')
+
 
 pp.register_search_method('A* mesh', aStar_mesh)
