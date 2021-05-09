@@ -180,7 +180,7 @@ class Robot:
 
     def __crashing_radius(self, env):
         for i in range(0, 360):
-            if env.item(int(self.x + math.cos(math.radians(i)) * self.radius), int(self.y + math.sin(math.radians(i)) * self.radius)) is 0:
+            if env.item(int(self.x + math.cos(math.radians(i)) * self.radius), int(self.y + math.sin(math.radians(i)) * self.radius)) == 0:
                 self.__benchmark_time('__crashing_radius')
                 return True
         return False
@@ -208,7 +208,7 @@ class Robot:
 
         if max_spot != (-1, -1):
             max_disp_vector = (max_spot[0] - self.x - self.radius, max_spot[1] - self.y - self.radius)
-            if env.item(int(calculated_x), int(calculated_y)) is 0:
+            if env.item(int(calculated_x), int(calculated_y)) == 0:
                 self.collide((self.x, self.y))
                 if max_spot[0] - self.x > 0:
                     self.x = max_spot[0] + (self.radius + 1)
@@ -246,7 +246,7 @@ class Robot:
             self.collide((self.x, 0))
             self.y = self.radius
 
-        if env.item(int(self.x), int(self.y)) is 50 or self.__crashing_radius(env):
+        if env.item(int(self.x), int(self.y)) == 50 or self.__crashing_radius(env):
             self.x = self.last_pos[0]
             self.y = self.last_pos[1]
             self.collide((self.x, self.y))
@@ -311,7 +311,7 @@ class Robot:
         for i in to_pop:
             col.remove(i)
         for c in col:
-            if c is (-1, -1):
+            if c == (-1, -1):
                 col.remove(c)
                 
         self.__benchmark_time('check_sensors')

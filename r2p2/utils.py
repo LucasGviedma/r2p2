@@ -339,7 +339,7 @@ def display_image(r):
                     or grid_size[0] >= tolerance):
                         if int(i * grid_size[0] + grid_size[0]//2) - 2 <npdata.shape[0]:
                             if npdata.item(int(i * grid_size[0] + grid_size[0]//2) - 2,
-                                       int(grid_size[1]//2) - 2) is 0:
+                                       int(grid_size[1]//2) - 2) == 0:
                                 font_color = (255, 255, 255)
                             else:
                                 font_color = (0, 0, 0)
@@ -360,7 +360,7 @@ def display_image(r):
                         if int(grid_size[0]/2) < npdata.shape[0] and\
                         int(grid_size[1]*j+grid_size[1]/2)-20 < npdata.shape[1]:
                             if npdata.item(int(grid_size[0]/2) - 2,
-                                       int(grid_size[1]*j+grid_size[1]/2) - 20) is 0:
+                                       int(grid_size[1]*j+grid_size[1]/2) - 20) == 0:
                                 font_color = (255, 255, 255)
                             else:
                                 font_color = (0, 0, 0)
@@ -371,7 +371,7 @@ def display_image(r):
                         text_rect.top = int(j * grid_size[0] + offset_y)
                         text_rect.centerx = int(offset_x)
                         screen.blit(text, text_rect)
-            if npdata.item(int(co2_center[0]), int(co2_center[1])) is not 0:
+            if npdata.item(int(co2_center[0]), int(co2_center[1])) != 0:
                 pygame.draw.line(screen, (125, 0, 0), (co2_center[0]-5, co2_center[1]-5),
                                  (co2_center[0]+5, co2_center[1]+5), 2)
                 pygame.draw.line(screen, (125, 0, 0), (co2_center[0]-5, co2_center[1]+5),
@@ -407,7 +407,7 @@ def search_edge_in_angle(origin, angle, image):
     var_y = math.sin(angle)
     ref = image.item((int(origin[0]), int(origin[1])))
     while round(origin[0]) in range(0, image.shape[0]) and round(origin[1]) in range(0, image.shape[1]):
-        if image.item(int(origin[0]), int(origin[1])) is 0:
+        if image.item(int(origin[0]), int(origin[1])) == 0:
             return origin
         origin = origin[0] + var_x, origin[1] + var_y
     return -1, -1
@@ -421,7 +421,7 @@ def search_edge_in_angle_with_limit(origin, angle, image, limit):
     o = origin
     while round(origin[0]) in range(0, image.shape[0]) and round(origin[1]) in range(0, image.shape[1])\
         and np.linalg.norm((origin[0] - o[0], origin[1] - o[1])) < limit:
-        if image.item(int(origin[0]), int(origin[1])) is 0:
+        if image.item(int(origin[0]), int(origin[1])) == 0:
             return origin
         origin = origin[0] + var_x, origin[1] + var_y
     return -1, -1
