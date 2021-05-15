@@ -28,12 +28,10 @@ __version__ = "0.0.1"
 
 
 import path_planning as pp
+import math
 
-def manhattan(point,point2):
-    """
-        Function that performs Manhattan heuristic.
-    """
-    return 0
+def manhattan(point, point2):
+    return abs(point2.x-point.x) + abs(point2.y-point.y)
 
 pp.register_heuristic('manhattan', manhattan)
 
@@ -46,9 +44,19 @@ def naive(point, point2):
 pp.register_heuristic('naive', naive)
 
 def euclidean(point, point2):
-    """
-        Function that performs euclidean heuristic.
-    """
-    return 25
+    return math.sqrt(pow(point2.x-point.x, 2) + pow(point2.y-point.y, 2))
 
 pp.register_heuristic('euclidean', euclidean)
+
+def octile(point, point2):
+    dx = abs(point2.x-point.x)
+    dy = abs(point2.y-point.y)
+    if dx > dy:
+        rest = dx
+    else:
+        rest = dy
+    dxy = abs(dx-dy)
+    rest = rest-dxy
+    return 1.44*dxy+rest
+
+pp.register_heuristic('octile', octile)
