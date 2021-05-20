@@ -2,7 +2,7 @@
 	"class": "pid_controller.path_planning_controller",
 	"grid_size": 40,
 	"algorithm": "T*",
-	"heuristic": "euclidean",
+	"heuristic": "octile",
 	"start": [1, 1],
 	"goal": [39, 39]
 }

@@ -1,4 +1,4 @@
 Para controlar al robot de manera autónoma en un entorno tan cerrado y observable, si que sería suficiente. Sin embargo,
 en situaciones inesperadas, o que no se hayan establecido en el planificador, el robot no tendría como reaccionar. Por
 poner un ejemplo, si en este planificador incluyesemos colores para determinar la pendiente de una zona, el robot tendría
-que tener en cuenta que pendientes es capaz de subir, y no únicamente una reduccion de velocidad segun el color. 
+que tener en cuenta que pendientes es capaz de subir, y no únicamente una reduccion de velocidad segun el color.

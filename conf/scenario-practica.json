@@ -4,7 +4,7 @@
 	"controller": "../conf/controller-practica.json",
 	"gui": true,
 	"algorithm": "T*",
-	"heuristic": "euclidean",
+	"heuristic": "octile",
 	"start": [1, 1],
 	"grid_size": 40
 
