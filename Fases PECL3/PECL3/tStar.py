@@ -172,7 +172,6 @@ def tStar_mesh(start, goal, grid, heur='naive'):
             - ordered list of nodes representing the shortest path found
             from start to goal.
     """
-    print(grid,1)
     # The open and closed sets
     open_set   = set()
     closed_set = set()
@@ -282,60 +281,4 @@ def line_of_sight(current_node, target_node, grid):
             if f == 0 and grid[x0][y0 + (sy - 1) // 2].value == 9 and grid[x0 - 1][y0 + (sy - 1) // 2].value == 9:
                 return False
             y0 += sy
-    print(line_of_sight22([19, 9], [31, 21], grid))
     return True
-
-def line_of_sight22(current_node, target_node, grid):
-
-    x0 = current_node[0]
-    y0 = current_node[1]
-
-    x1 = target_node[0]
-    y1 = target_node[1]
-
-    dx = x1-x0
-    dy = y1-y0
-
-    f = 0
-
-    if dy < 0:
-        dy = -dy
-        sy = -1
-    else:
-        sy =  1
-
-    if dx < 0:
-        dx = -dx
-        sx = -1
-    else:
-        sx = 1
-
-    if dx >= dy:
-        while x0 != x1:
-            f += dy
-            if f >= dx:
-                if grid[x0 + (sx - 1) // 2][y0 + (sy - 1) // 2] == 9:
-                    return False
-                y0 += sy
-                f  -= dx
-            if f != 0 and grid[x0 + (sx - 1) // 2][y0 + (sy - 1) // 2].value == 9:
-                return False
-            if f == 0 and grid[x0 + (sx - 1) // 2][y0].value == 9 and grid[x0 + (sx - 1) // 2][y0 - 1].value == 9:
-                return False
-            x0 += sx
-    else:
-        while y0 != y1:
-            f += dx
-            if f >= dy:
-                if grid[x0 + (sx - 1) // 2][y0 + ((sy - 1) // 2)].value == 9:
-                    return False
-                x0 += sx
-                f  -= dy
-            if f != 0 and grid[x0 + (sx - 1) // 2][y0 + ((sy - 1) // 2)].value == 9:
-                return False
-            if f == 0 and grid[x0][y0 + (sy - 1) // 2].value == 9 and grid[x0 - 1][y0 + (sy - 1) // 2].value == 9:
-                return False
-            y0 += sy
-    print(current_node, target_node)
-    return True
-

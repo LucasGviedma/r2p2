@@ -51,12 +51,7 @@ pp.register_heuristic('euclidean', euclidean)
 def octile(point, point2):
     dx = abs(point2.grid_point[0]-point.grid_point[0])
     dy = abs(point2.grid_point[1]-point.grid_point[1])
-    if dx > dy:
-        rest = dx
-    else:
-        rest = dy
-    dxy = abs(dx-dy)
-    rest = rest-dxy
-    return 1.44*dxy+rest
+    return 1.44*min(dx, dy)+abs(dx-dy)
 
 pp.register_heuristic('octile', octile)
+

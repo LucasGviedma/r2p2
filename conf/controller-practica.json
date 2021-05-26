@@ -3,6 +3,6 @@
 	"grid_size": 40,
 	"algorithm": "T*",
 	"heuristic": "octile",
-	"start": [1, 1],
+	"start": [0, 0],
 	"goal": [39, 39]
 }

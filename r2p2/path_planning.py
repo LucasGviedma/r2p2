@@ -218,7 +218,7 @@ def generate_navmesh(npdata, waypoints):
         generate_neighbors(n, nodes)
     return nodes
 
-def generate_waypoints_list(algo, start, finish, grid, heur="naive"):
+def generate_waypoints_list(algo, start, finish, grid, heur="euclidean"):
     """
         Generates an ordered list of waypoints for a controller to iterate over.
         Inputs:
@@ -244,7 +244,7 @@ def generate_waypoints_list(algo, start, finish, grid, heur="naive"):
     print("Total nodes expanded: ", expanded_nodes)
     return waypoints
 
-def generate_waypoints_list_mesh(algo, start, finish, mesh, heur="naive"):
+def generate_waypoints_list_mesh(algo, start, finish, mesh, heur="euclidean"):
     """
         Generates an ordered list of waypoints for a controller to iterate over.
         Inputs:
@@ -270,7 +270,7 @@ def generate_waypoints_list_mesh(algo, start, finish, mesh, heur="naive"):
     print("Total nodes expanded: ", expanded_nodes)
     return waypoints
 
-def run_path_planning(grid_size, algo='A*', start=(1, 1), finish=(2,2), heur='naive', show_grid=True):
+def run_path_planning(grid_size, algo='A*', start=(1, 1), finish=(2,2), heur='euclidean', show_grid=True):
     """
         Configures and runs a given path planning algorithm over a grid.
         Inputs:
@@ -301,7 +301,7 @@ def run_path_planning(grid_size, algo='A*', start=(1, 1), finish=(2,2), heur='na
         u.grid_size = [width, height]
     return res
 
-def run_path_planning_mesh(mesh_points, algo='A* mesh', start=(1, 1), finish=(2, 2), heur='naive'):
+def run_path_planning_mesh(mesh_points, algo='A* mesh', start=(1, 1), finish=(2, 2), heur='euclidean'):
     """
         Configures and runs a given path planning algorithm over a mesh.
         Inputs:

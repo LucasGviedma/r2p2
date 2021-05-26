@@ -3,9 +3,10 @@
 	"robot": "../conf/robot.json",
 	"controller": "../conf/controller-practica.json",
 	"gui": true,
-	"algorithm": "T*",
+	"algorithm": "A*",
 	"heuristic": "octile",
 	"start": [1, 1],
+	"end": [39, 39],
 	"grid_size": 40
 
 }

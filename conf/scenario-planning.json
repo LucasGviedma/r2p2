@@ -4,5 +4,5 @@
 	"controller": "../conf/controller-planning.json",
 	"gui": true,
 	"co2_center": [300, 300],
-	"co2_radius": 35
+	"co2_radius": 40
 }
